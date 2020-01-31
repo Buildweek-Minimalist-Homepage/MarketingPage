@@ -1,18 +1,25 @@
 
 //Changes wrapper every 4 seconds
-  const x = document.getElementById("box-wrapper");
-  let cycle = 0;
-  let allBackgrounds = [ "url('/img/1.jpg')", "url('/img/2.jpg')", "url('/img/3.jpg')","url('/img/4.jpg')"];
-    setInterval(function() {
-    if (cycle < 4) {
-      x.style.backgroundImage = allBackgrounds[cycle];
-      document
-      cycle += 1;
-    } else { 
-      cycle = 0;
-    }
-  }, 4000);
 
+
+  let allBackgrounds = [ "url('./img/1.jpg')", "url('./img/2.jpg')", "url('./img/3.jpg')","url('./img/4.jpg')"];
+  let cycle = 0;
+  let main_carousel = () => {
+    const slides = document.getElementsByClassName("mySlides");
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.visibility = "hidden";
+      slides[i].style.opacity = "0%";
+   
+    }
+    cycle++;
+    if(cycle > slides.length){
+      cycle = 1;
+    }
+    slides[cycle-1].style.visibility = "visible"; 
+    slides[cycle-1].style.opacity = "100%";   
+    setTimeout(main_carousel, 4000); 
+  }
+  main_carousel();
 //Typed JS 
 let typed = new Typed('#typed', {
     strings: ['Positivity', 'Motivation', 'News', 'Alerts'],
